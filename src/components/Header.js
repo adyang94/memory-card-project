@@ -1,6 +1,5 @@
 // This header component will contain the title, score, and github link.
 
-import React, { useState } from 'react';
 function Header (props) {
 
   

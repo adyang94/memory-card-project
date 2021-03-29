@@ -7,6 +7,14 @@ function App() {
   const [currentScore, setCurrentScore] = useState(1);
   const [highScore, setHighScore] = useState(0);
 
+  const setCurrentScoreCallback = (score) => {
+    setCurrentScore(score);
+    console.log(`Current Score Callback`);
+  }
+  const updateHighScore = () => {
+    setHighScore()
+  }
+
   return (
     <div className="App">
       <Header 
@@ -14,7 +22,9 @@ function App() {
         highScore = {highScore}
 
       />
-      <Game />
+      <Game 
+        setCurrentScoreCallback = {setCurrentScoreCallback}
+      />
     </div>
   );
 }
