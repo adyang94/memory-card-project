@@ -1,16 +1,22 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 
 function Game (props) {
-  let score = 0;
+  const [score, setScore] = useState(0);
 
   const increment = () => {
-    score++;
+    setScore(score + 1);
     console.log(`score: ${score}`);
+  }
+  const save = () => {
+    console.log('save');
+    props.setCurrentScoreCallback(score);
+    setScore(0);
   }
 
   useEffect(()=> {
+    console.log('useEffect');
     props.setCurrentScoreCallback(score);
-  })
+  });
 
   return (
     <div>
@@ -20,7 +26,7 @@ function Game (props) {
         Add
       </button>
       <button
-        
+        onClick = {save}
       >
         Save
       </button>
