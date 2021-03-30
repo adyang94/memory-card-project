@@ -10,9 +10,13 @@ function App() {
   const setCurrentScoreCallback = (score) => {
     setCurrentScore(score);
     console.log(`Current Score Callback`);
+    
   }
-  const updateHighScore = () => {
-    setHighScore()
+  const updateHighScore = (score) => {
+    console.log(`High Score: ${highScore}`);
+    if (score > highScore) {
+      setHighScore(score);
+    }
   }
 
   return (
@@ -24,6 +28,7 @@ function App() {
       />
       <Game 
         setCurrentScoreCallback = {setCurrentScoreCallback}
+        updateHighScore = {updateHighScore}
       />
     </div>
   );

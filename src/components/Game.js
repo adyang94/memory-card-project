@@ -8,8 +8,8 @@ function Game (props) {
     console.log(`score: ${score}`);
   }
   const save = () => {
-    console.log('save');
-    props.setCurrentScoreCallback(score);
+    console.log('save--------------');
+    props.updateHighScore(score);
     setScore(0);
   }
 
