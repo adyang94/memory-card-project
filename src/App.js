@@ -10,14 +10,13 @@ function App() {
   const setCurrentScoreCallback = (score) => {
     setCurrentScore(score);
     console.log(`Current Score Callback`);
-    
-  }
+  };
   const updateHighScore = (score) => {
     console.log(`High Score: ${highScore}`);
     if (score > highScore) {
       setHighScore(score);
     }
-  }
+  };
 
   return (
     <div className="App">

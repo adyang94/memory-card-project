@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 
 function Game (props) {
+  const pictureInfo = {
+    
+  }
   const [score, setScore] = useState(0);
 
   const increment = () => {
@@ -20,6 +23,9 @@ function Game (props) {
 
   return (
     <div>
+      <div className = "cardContainer">
+
+      </div>
       <button
         onClick = {increment}
       >
