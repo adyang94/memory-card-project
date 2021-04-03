@@ -134,25 +134,14 @@ function Game (props) {
   return (
     <div>
       <div className = "cardContainer">
-
+        
       </div>
-      <button
-        onClick = {increment}
-      >
-        Add
-      </button>
-      <button
-        onClick = {save}
-      >
-        Save
-      </button>
-      <button onClick = {randomizerAndTracker}>Randomize</button>
       <br/>
       
 
       {imgArrayOrdering.map((index) => {
         return(
-          <img src={pictureInfo[index].src} alt="" dataset={index} key={index} height = "100px" width = "100px" onClick = {() => {randomizerAndTracker(index)}} />
+          <img src={pictureInfo[index].src} alt="" dataset={index} key={index} height = "100px" width = "100px" onClick = {() => {randomizerAndTracker(index)}} style={{cursor: "pointer"}} />
         )
       })}
 

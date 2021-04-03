@@ -4,6 +4,7 @@ function Header (props) {
   
   return (
     <div>
+      <h1>Memory Game</h1>
       <p>
         Current Score: {props.currentScore}
       </p>
