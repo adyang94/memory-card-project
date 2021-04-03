@@ -52,11 +52,10 @@ function Game (props) {
       clicked: false
     }
   ]);
+  const [score, setScore] = useState(0);
 
   function hasBeenClicked (num) {
-    // console.log(num);
     if(pictureInfo[num].clicked === false) {
-      // console.log('hello1')
       setPictureInfo(() => {
         let newData = [...pictureInfo];
         newData[num].clicked = true;
@@ -79,7 +78,6 @@ function Game (props) {
           object.clicked = false;
           return object;
         })
-        // console.log(newPictureInfo);
         return newPictureInfo;
       });
       return;
@@ -93,67 +91,26 @@ function Game (props) {
       while (newArrayOrdering.includes(newNumber)) {
         newNumber = Math.floor(Math.random() * 8);
       }
-
       newArrayOrdering.push(newNumber);
     }
     console.log(`New Array Order: ${newArrayOrdering}`);
     setImgArrayOrdering(newArrayOrdering)
-
   };
-
-  const [score, setScore] = useState(0);
-
-  const increment = () => {
-    console.log(`score0: ${score} ---------------`);
-    // props.setCurrentScoreCallback(score);
-    setScore(score + 1);
-    console.log(`score1: ${score}`);
-  }
-
-  // const save = () => {
-  //   console.log('save--------------');
-  //   props.updateHighScore(score);
-  //   setScore(0);
-  // }
-
-  function save () {
-    console.log('save--------------');
-    props.updateHighScore(score);
-    setScore(0);
-  }
 
   useEffect(()=> {
     console.log('useEffect');
     console.log(`score3: ${score}`);
     props.setCurrentScoreCallback(score);
-    
   });
-
-  
 
   return (
     <div>
-      <div className = "cardContainer">
-        
+      <div className = "imageContainer">
+        {imgArrayOrdering.map((index) => {
+          return(
+            <img src={pictureInfo[index].src} alt="" dataset={index} key={index} className = "images" onClick = {() => {randomizerAndTracker(index)}} style={{cursor: "pointer"}} />)
+        })}
       </div>
-      <br/>
-      
-
-      {imgArrayOrdering.map((index) => {
-        return(
-          <img src={pictureInfo[index].src} alt="" dataset={index} key={index} height = "100px" width = "100px" onClick = {() => {randomizerAndTracker(index)}} style={{cursor: "pointer"}} />
-        )
-      })}
-
-      {/* {pictureInfo.map((pictureInfo, i) => {
-        
-        return (
-          <img src = {pictureInfo.src} key={i} alt="" height = "100px" width = "100px" />
-        );
-      })} */}
-      {/* <img src = {img1} alt ="Dog 1" height = "100px" width = "100px" />
-      <img src = {img2} alt = "Dog 2" height = "100px" width = "100px" /> */}
-      {/* <img src = {pictureInfo[1].src} alt="" /> */}
     </div>
   )
 }
