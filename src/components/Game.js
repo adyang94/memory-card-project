@@ -10,43 +10,80 @@ import img8 from '../pictures/8.jpg';
 
 function Game (props) {
   const [imgArrayOrdering, setImgArrayOrdering] = useState([0, 1, 2, 3, 4, 5, 6, 7])
-  
-  let pictureInfo = [
+  const [pictureInfo, setPictureInfo] = useState([
     {
       name: "img1",
-      src: img1
+      src: img1,
+      clicked: false
     },
     {
       name: "img2",
-      src: img2
+      src: img2,
+      clicked: false
     },
     {
       name: "img3",
-      src: img3
+      src: img3,
+      clicked: false
     },
     {
       name: "img4",
-      src: img4
+      src: img4,
+      clicked: false
     },
     {
       name: "img5",
-      src: img5
+      src: img5,
+      clicked: false
     },
     {
       name: "img6",
-      src: img6
+      src: img6,
+      clicked: false
     },
     {
       name: "img7",
-      src: img7
+      src: img7,
+      clicked: false
     },
     {
       name: "img8",
-      src: img8
+      src: img8,
+      clicked: false
     }
-  ];
+  ]);
 
-  const randomizer = () => {
+  function hasBeenClicked (num) {
+    // console.log(num);
+    if(pictureInfo[num].clicked === false) {
+      // console.log('hello1')
+      setPictureInfo(() => {
+        let newData = [...pictureInfo];
+        newData[num].clicked = true;
+        setScore(score + 1);
+        return newData;
+      })
+      console.log(`Picture clicked status: ${pictureInfo[num].clicked}`);
+      return false;
+    }
+    return true;
+  };
+  const randomizerAndTracker = (num) => {
+    
+    if (hasBeenClicked(num)) {
+      alert('Clicked before!  Game Over!')
+      props.updateHighScore(score);
+      setScore(0);
+      setPictureInfo(() => {
+        imgArrayOrdering.map((index) => {
+          let newData = [...pictureInfo];
+          newData[index].clicked = false;
+          return newData;
+        })
+      });
+      return;
+    }
+
     console.log('RANDOMIZER RUNNING');
     let newArrayOrdering = [];
     let newNumber = Math.floor(Math.random() * 8);
@@ -57,8 +94,8 @@ function Game (props) {
       }
 
       newArrayOrdering.push(newNumber);
-      console.log(`New Number: ${newNumber}`);
     }
+    console.log(`New Array Order: ${newArrayOrdering}`);
     setImgArrayOrdering(newArrayOrdering)
 
   };
@@ -66,10 +103,19 @@ function Game (props) {
   const [score, setScore] = useState(0);
 
   const increment = () => {
+    console.log(`score0: ${score} ---------------`);
+    // props.setCurrentScoreCallback(score);
     setScore(score + 1);
-    console.log(`score: ${score}`);
+    console.log(`score1: ${score}`);
   }
-  const save = () => {
+
+  // const save = () => {
+  //   console.log('save--------------');
+  //   props.updateHighScore(score);
+  //   setScore(0);
+  // }
+
+  function save () {
     console.log('save--------------');
     props.updateHighScore(score);
     setScore(0);
@@ -77,7 +123,9 @@ function Game (props) {
 
   useEffect(()=> {
     console.log('useEffect');
+    console.log(`score3: ${score}`);
     props.setCurrentScoreCallback(score);
+    
   });
 
   
@@ -97,13 +145,13 @@ function Game (props) {
       >
         Save
       </button>
-      <button onClick = {randomizer}>Randomize</button>
+      <button onClick = {randomizerAndTracker}>Randomize</button>
       <br/>
       
 
       {imgArrayOrdering.map((index) => {
         return(
-          <img src={pictureInfo[index].src} alt="" key={index} height = "100px" width = "100px" onClick = {randomizer} />
+          <img src={pictureInfo[index].src} alt="" dataset={index} key={index} height = "100px" width = "100px" onClick = {() => {randomizerAndTracker(index)}} />
         )
       })}
 

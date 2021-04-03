@@ -4,12 +4,13 @@ import Game from './components/Game.js';
 import React, {useState} from 'react';
 
 function App() {
-  const [currentScore, setCurrentScore] = useState(1);
+  const [currentScore, setCurrentScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
 
   const setCurrentScoreCallback = (score) => {
     setCurrentScore(score);
     console.log(`Current Score Callback`);
+    console.log(`score: ${score}`);
   };
   const updateHighScore = (score) => {
     console.log(`High Score: ${highScore}`);
