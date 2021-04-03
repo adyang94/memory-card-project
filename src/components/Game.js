@@ -3,18 +3,22 @@ import img1 from '../pictures/1.jpg';
 import img2 from '../pictures/2.jpg';
 
 function Game (props) {
-  
+  const [imgArrayOrdering, setImgArryOrdering] = useState([0,1])
   
   let pictureInfo = [
     {
       name: "img1",
-      src: require("../pictures/1.jpg")
+      src: img1
     },
     {
       name: "img2",
-      src: require("../pictures/2.jpg")
+      src: img2
     }
   ];
+
+  const randomizer = () => {
+
+  };
 
   const [score, setScore] = useState(0);
 
@@ -52,15 +56,23 @@ function Game (props) {
       </button>
       <button>Randomize</button>
       <br/>
-      <img src = {img1} alt ="Dog 1" height = "100px" width = "100px" />
-      <img src = {img2} alt = "Dog 2" height = "100px" width = "100px" />
+      
 
-      {pictureInfo.map((pictureInfo, i) => {
+      {imgArrayOrdering.map((index) => {
+        return(
+          <img src={pictureInfo[index].src} alt="" key={index} height = "100px" width = "100px" />
+        )
+      })}
+
+      {/* {pictureInfo.map((pictureInfo, i) => {
         
         return (
           <img src = {pictureInfo.src} key={i} alt="" height = "100px" width = "100px" />
         );
-      })}
+      })} */}
+      {/* <img src = {img1} alt ="Dog 1" height = "100px" width = "100px" />
+      <img src = {img2} alt = "Dog 2" height = "100px" width = "100px" /> */}
+      {/* <img src = {pictureInfo[1].src} alt="" /> */}
     </div>
   )
 }
