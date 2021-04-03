@@ -33,6 +33,8 @@ function Game (props) {
     props.setCurrentScoreCallback(score);
   });
 
+  
+
   return (
     <div>
       <div className = "cardContainer">
