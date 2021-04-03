@@ -75,11 +75,12 @@ function Game (props) {
       props.updateHighScore(score);
       setScore(0);
       setPictureInfo(() => {
-        imgArrayOrdering.map((index) => {
-          let newData = [...pictureInfo];
-          newData[index].clicked = false;
-          return newData;
+        let newPictureInfo = pictureInfo.map((object) => {
+          object.clicked = false;
+          return object;
         })
+        // console.log(newPictureInfo);
+        return newPictureInfo;
       });
       return;
     }
